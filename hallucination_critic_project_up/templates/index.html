@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Critic App NLP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🔍</div>
+            </div>
+            <h1>Critic App</h1>
+            <p class="tagline">Advanced Hallucination Detection & Verification System</p>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Source Text Card -->
+            <div class="card">
+                <div class="card-header">
+                    
+                    <div class="card-title">Original Source Text</div>
+                </div>
+                <textarea id="sourceText" placeholder="Paste the original article or document here...
+
+This is the ground truth that we'll compare against."></textarea>
+            </div>
+
+            <!-- Summary Text Card -->
+            <div class="card">
+                <div class="card-header">
+                    
+                    <div class="card-title">AI-Generated Summary</div>
+                </div>
+                <textarea id="summaryText" placeholder="Paste the AI-generated summary here...
+
+We'll check this for hallucinations and fabrications."></textarea>
+            </div>
+
+            <!-- Analyze Button -->
+            <div class="action-section">
+                <button class="analyze-btn" onclick="analyzeSummary()">
+                    <span>🔍 Analyze for Hallucinations</span>
+                </button>
+            </div>
+
+            <!-- Results Container -->
+            <div class="results-container" id="resultsContainer">
+                <!-- Verdict Card -->
+                <div class="verdict-card" id="verdictCard">
+                    <div class="verdict-icon" id="verdictIcon">✅</div>
+                    <div class="verdict-title" id="verdictTitle">Summary Verified</div>
+                    <div class="verdict-subtitle" id="verdictSubtitle">No hallucinations detected</div>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Hallucination Score</div>
+                        <div class="metric-value" id="hallucinationScore">0%</div>
+                        <div class="metric-bar">
+                            <div class="metric-bar-fill" id="hallucinationBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Semantic Similarity</div>
+                        <div class="metric-value" id="semanticSim">0%</div>
+                        <div class="metric-bar">
+                            <div class="metric-bar-fill" id="semanticBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Keyword Coverage</div>
+                        <div class="metric-value" id="keywordCoverage">0%</div>
+                        <div class="metric-bar">
+                            <div class="metric-bar-fill" id="keywordBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Grid -->
+                <div class="analysis-grid" id="analysisGrid">
+                    <!-- Dynamic analysis cards will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loader">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <div class="loading-text">Analyzing Content...</div>
+            <div class="loading-subtext">Detecting hallucinations and verifying facts</div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
